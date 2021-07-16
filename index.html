@@ -167,11 +167,15 @@
       let clip = document.querySelector('.clip');
       let percentinside = document.querySelectorAll('.percent-inside');
       navigator.getBattery().then(function(battery){
-        percentage.style.width = battery.level * 100 + '%';
-        clip.style.clipPath = 'polygon(0 0, ' + battery.level * 100 + '%' + '0,' + battery.level * 100 + '%' + '100%, 0 100%';
-        percent.innerHTML = battery.level * 100 + '%';
-        percentinside[0].innerHTML = battery.level * 100 + '%';
-        percentinside[1].innerHTML = battery.level * 100 + '%';
+        let batteryLevel = battery.level * 100;
+        if(batteryLevel <= 15){
+          percentage.style.background = '#ef233c';
+        }
+        percentage.style.width = batteryLevel + '%';
+        clip.style.clipPath = 'polygon(0 0, ' + batteryLevel + '%' + '0,' + batteryLevel + '%' + '100%, 0 100%';
+        percent.innerHTML = batteryLevel + '%';
+        percentinside[0].innerHTML = batteryLevel + '%';
+        percentinside[1].innerHTML = batteryLevel + '%';
       });
 
       //toggle light mode
